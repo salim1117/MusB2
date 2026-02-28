@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Poppins:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ff7e5f",
+                        "secondary": "#2ec4b6",
+                        "accent": "#c7f9cc",
+                        "highlight": "#feb47b",
+                        "vibrant-green": "#70e000",
+                        "vibrant-blue": "#00b4d8",
+                        "vibrant-orange": "#ff9e00",
+                        "background-light": "#fffcf2",
+                        "background-dark": "#252422",
+                    },
+                    fontFamily: {
+                        "display": ["Poppins", "sans-serif"],
+                        "body": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "1.5rem",
+                        "xl": "2.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .health-journey-path {
+                background-image: radial-gradient(circle at 2px 2px, rgba(0,0,0,0.03) 1px, transparent 0);
+                background-size: 32px 32px;
+            }
+            .stagger-step:nth-child(even) {
+                @apply lg:translate-y-24;
+            }
+            .journey-dot {
+                stroke-dasharray: 1, 35;
+                stroke-linecap: round;
+                stroke: #ff7e5f;
+                stroke-opacity: 0.2;
+            }
+            .character-float {
+                animation: float 3s ease-in-out infinite;
+            }
+            @keyframes float {
+                0% { transform: translateY(0px); }
+                50% { transform: translateY(-10px); }
+                100% { transform: translateY(0px); }
+            }
+
+            /* Redesigned Hero Section */
+            .hero {
+                @apply relative w-full h-[85vh] overflow-hidden;
+                background: url('hero.jpg') center center / cover no-repeat;
+            }
+
+            .hero-overlay {
+                @apply absolute inset-0 flex items-center;
+                background: rgba(10, 30, 60, 0.55);
+            }
+
+            .hero-content {
+                @apply max-w-[600px] ml-[8%] text-white;
+            }
+
+            .hero-content h1 {
+                @apply text-[3.5rem] font-bold leading-[1.2];
+            }
+
+            .hero-content h1 span {
+                color: #f97316;
+            }
+
+            .hero-content p {
+                @apply mt-5 text-[1.1rem] opacity-90;
+            }
+
+            .hero-btn {
+                @apply inline-block mt-[30px] px-[30px] py-[14px] bg-[#f97316] text-white no-underline rounded-lg font-semibold transition-all hover:bg-[#ea580c] hover:-translate-y-1;
+            }
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        .nav-link {
+            transition: all 0.3s ease;
+        }
+
+        .nav-link.active {
+            color: #f97316 !important;
+            font-weight: 700 !important;
+        }
+
+        body {
+            padding-top: 80px;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light font-body text-slate-800 selection:bg-primary selection:text-white">
+    <div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+        <header
+            class="fixed top-0 w-full bg-white/95 backdrop-blur-xl z-50 shadow-sm border-b-4 border-primary/10 flex items-center justify-between px-6 lg:px-12 py-6">
+            <div class="flex items-center gap-10">
+                <div class="flex items-center gap-3">
+                    <div class="size-10 rounded-xl overflow-hidden shadow-lg">
+                        <img src="logo.jpg" alt="MusB Diagnostics Logo" class="w-full h-full object-cover">
+                    </div>
+                    <h2 class="text-black font-display font-bold text-2xl tracking-tight">MusB Diagnostics</h2>
+                </div>
+                <nav class="hidden md:flex items-center gap-8 font-medium">
+                    <a href="#home" class="nav-link text-slate-700 font-bold">Home</a>
+                    <a href="#panels" class="nav-link text-slate-700 font-bold">Wellness Panels</a>
+                    <a href="#tests" class="nav-link text-slate-700 font-bold">Tests</a>
+                    <a href="#physicians" class="nav-link text-slate-700 font-bold">Physicians</a>
+                    <a href="#facilities" class="nav-link text-slate-700 font-bold">Facilities</a>
+                    <a href="#contact" class="nav-link text-slate-700 font-bold">Contact</a>
+                </nav>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="#"
+                    class="hidden sm:flex px-8 py-3 bg-[#f97316] hover:bg-[#ea580c] text-white font-display font-bold rounded-full shadow-xl shadow-orange-500/20 transition-all hover:-translate-y-1 flex items-center justify-center leading-none">
+                    Book Now
+                </a>
+            </div>
+        </header>
+        <main class="flex flex-col">
+            <section id="home" class="hero">
+                <div class="hero-overlay px-6 lg:px-12">
+                    <div class="hero-content">
+                        <h1 class="font-display">
+                            Fast, Affordable &amp; <br />
+                            <span>Local Diagnostic Testing</span>
+                        </h1>
+                        <p class="font-body">
+                            Your neighborhood lab for self-pay patients, community physicians,
+                            facilities, and mobile phlebotomy.
+                        </p>
+
+                        <div class="flex flex-col md:flex-row flex-wrap gap-x-10 gap-y-4 my-8 lg:my-10">
+                            <div class="flex items-center gap-3 text-white/90 text-lg font-bold">
+                                <span class="material-symbols-outlined text-vibrant-green text-3xl">check_circle</span>
+                                No doctor’s order required
+                            </div>
+                            <div class="flex items-center gap-3 text-white/90 text-lg font-bold">
+                                <span class="material-symbols-outlined text-vibrant-green text-3xl">check_circle</span>
+                                Transparent, upfront pricing
+                            </div>
+                            <div class="flex items-center gap-3 text-white/90 text-lg font-bold">
+                                <span class="material-symbols-outlined text-vibrant-green text-3xl">check_circle</span>
+                                Same-day or next-day appointments available
+                            </div>
+                        </div>
+
+                        <a href="#" class="hero-btn font-display text-xl">Book Tests</a>
+                    </div>
+                </div>
+            </section>
+            <section class="px-6 lg:px-12 py-12">
+                <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div
+                        class="bg-white p-8 rounded-3xl shadow-xl shadow-slate-200/50 flex flex-col items-center text-center border-b-8 border-secondary">
+                        <div
+                            class="size-16 bg-secondary/10 text-secondary rounded-2xl flex items-center justify-center mb-4">
+                            <span class="material-symbols-outlined text-4xl">savings</span>
+                        </div>
+                        <h3 class="font-display font-bold text-xl mb-1">Self-Pay Friendly</h3>
+                        <p class="text-slate-500">No insurance? No problem. Low-cost upfront pricing.</p>
+                    </div>
+                    <div
+                        class="bg-white p-8 rounded-3xl shadow-xl shadow-slate-200/50 flex flex-col items-center text-center border-b-8 border-vibrant-orange">
+                        <div
+                            class="size-16 bg-vibrant-orange/10 text-vibrant-orange rounded-2xl flex items-center justify-center mb-4">
+                            <span class="material-symbols-outlined text-4xl">event_available</span>
+                        </div>
+                        <h3 class="font-display font-bold text-xl mb-1">Walk-In Ready</h3>
+                        <p class="text-slate-500">Same-day or next-day appointments available.</p>
+                    </div>
+                    <div
+                        class="bg-white p-8 rounded-3xl shadow-xl shadow-slate-200/50 flex flex-col items-center text-center border-b-8 border-primary">
+                        <div
+                            class="size-16 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mb-4">
+                            <span class="material-symbols-outlined text-4xl">distance</span>
+                        </div>
+                        <h3 class="font-display font-bold text-xl mb-1">Mobile Phleb</h3>
+                        <p class="text-slate-500">We drive to your home or office for convenience.</p>
+                    </div>
+                </div>
+            </section>
+            <section id="panels" class="px-6 lg:px-12 py-24 bg-accent/20 rounded-t-[5rem]">
+                <div class="max-w-7xl mx-auto">
+                    <div class="text-center mb-16">
+                        <h2 class="font-display text-4xl lg:text-5xl font-bold text-slate-900 mb-4">Popular Wellness
+                            Panels</h2>
+                        <p class="text-slate-600 text-lg">Meet your health heroes! Choose the panel that fits your
+                            journey.</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 items-stretch">
+                        <!-- Card 1: Essential Wellness Panel -->
+                        <div class="group">
+                            <div
+                                class="bg-white rounded-[3rem] shadow-2xl p-8 flex flex-col items-center text-center h-full hover:-translate-y-4 transition-all duration-500 border-2 border-transparent hover:border-secondary">
+                                <!-- Title -->
+                                <h3
+                                    class="font-display text-xl lg:text-2xl font-bold text-slate-900 mb-5 leading-tight min-h-[72px] flex items-center justify-center">
+                                    Essential Wellness Panel
+                                </h3>
+                                <!-- Image -->
+                                <div class="mb-6 h-32 flex items-center justify-center">
+                                    <div
+                                        class="size-32 bg-slate-50 rounded-full flex items-center justify-center overflow-hidden">
+                                        <img src="Essential%20Panel.jpg" alt="Essential Wellness Panel"
+                                            class="w-24 h-24 object-contain character-float">
+                                    </div>
+                                </div>
+                                <!-- Description -->
+                                <p
+                                    class="text-gray-600 text-sm leading-relaxed mb-6 min-h-[64px] flex items-center justify-center">
+                                    Annual health check with CBC, CMP, Lipid Panel, Thyroid, and Urinalysis.
+                                </p>
+                                <!-- Price -->
+                                <div class="mb-6 mt-4">
+                                    <p class="text-sm text-gray-500 font-medium tracking-wide">From</p>
+                                    <p class="text-3xl font-bold text-gray-900">$49</p>
+                                </div>
+                                <!-- Button -->
+                                <div class="mt-auto w-full">
+                                    <button
+                                        class="w-full bg-orange-500 hover:bg-orange-600 text-white py-4 rounded-2xl font-bold text-lg transition-all shadow-lg shadow-orange-500/20 active:scale-95">
+                                        Book Now
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card 2: Women’s Health & Hormone Panel -->
+                        <div class="group">
+                            <div
+                                class="bg-white rounded-[3rem] shadow-2xl p-8 flex flex-col items-center text-center h-full hover:-translate-y-4 transition-all duration-500 border-2 border-transparent hover:border-primary">
+                                <!-- Title -->
+                                <h3
+                                    class="font-display text-xl lg:text-2xl font-bold text-slate-900 mb-5 leading-tight min-h-[72px] flex items-center justify-center">
+                                    Women’s Health & Hormone Panel
+                                </h3>
+                                <!-- Image -->
+                                <div class="mb-6 h-32 flex items-center justify-center">
+                                    <div
+                                        class="size-32 bg-slate-50 rounded-full flex items-center justify-center overflow-hidden">
+                                        <img src="Womens%20panel.png" alt="Women's Health & Hormone Panel"
+                                            class="w-24 h-24 object-contain character-float"
+                                            style="animation-delay: 0.5s">
+                                    </div>
+                                </div>
+                                <!-- Description -->
+                                <p
+                                    class="text-gray-600 text-sm leading-relaxed mb-6 min-h-[64px] flex items-center justify-center">
+                                    Thyroid, hormones, vitamins, metabolism and more.
+                                </p>
+                                <!-- Price -->
+                                <div class="mb-6 mt-4">
+                                    <p class="text-sm text-gray-500 font-medium tracking-wide">From</p>
+                                    <p class="text-3xl font-bold text-gray-900">$49</p>
+                                </div>
+                                <!-- Button -->
+                                <div class="mt-auto w-full">
+                                    <button
+                                        class="w-full bg-orange-500 hover:bg-orange-600 text-white py-4 rounded-2xl font-bold text-lg transition-all shadow-lg shadow-orange-500/20 active:scale-95">
+                                        Book Now
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card 3: Men’s Health & Testosterone Panel -->
+                        <div class="group">
+                            <div
+                                class="bg-white rounded-[3rem] shadow-2xl p-8 flex flex-col items-center text-center h-full hover:-translate-y-4 transition-all duration-500 border-2 border-transparent hover:border-vibrant-blue">
+                                <!-- Title -->
+                                <h3
+                                    class="font-display text-xl lg:text-2xl font-bold text-slate-900 mb-5 leading-tight min-h-[72px] flex items-center justify-center">
+                                    Men’s Health & Testosterone Panel
+                                </h3>
+                                <!-- Image -->
+                                <div class="mb-6 h-32 flex items-center justify-center">
+                                    <div
+                                        class="size-32 bg-slate-50 rounded-full flex items-center justify-center overflow-hidden">
+                                        <img src="Men's%20Panel.png" alt="Men's Health & Testosterone Panel"
+                                            class="w-24 h-24 object-contain character-float"
+                                            style="animation-delay: 1s">
+                                    </div>
+                                </div>
+                                <!-- Description -->
+                                <p
+                                    class="text-gray-600 text-sm leading-relaxed mb-6 min-h-[64px] flex items-center justify-center">
+                                    Testosterone, thyroid, vitamins, lipids, and general health.
+                                </p>
+                                <!-- Price -->
+                                <div class="mb-6 mt-4">
+                                    <p class="text-sm text-gray-500 font-medium tracking-wide">From</p>
+                                    <p class="text-3xl font-bold text-gray-900">$49</p>
+                                </div>
+                                <!-- Button -->
+                                <div class="mt-auto w-full">
+                                    <button
+                                        class="w-full bg-orange-500 hover:bg-orange-600 text-white py-4 rounded-2xl font-bold text-lg transition-all shadow-lg shadow-orange-500/20 active:scale-95">
+                                        Book Now
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card 4: Metabolic & Weight Health Panel -->
+                        <div class="group">
+                            <div
+                                class="bg-white rounded-[3rem] shadow-2xl p-8 flex flex-col items-center text-center h-full hover:-translate-y-4 transition-all duration-500 border-2 border-transparent hover:border-vibrant-green">
+                                <!-- Title -->
+                                <h3
+                                    class="font-display text-xl lg:text-2xl font-bold text-slate-900 mb-5 leading-tight min-h-[72px] flex items-center justify-center">
+                                    Metabolic & Weight Health Panel
+                                </h3>
+                                <!-- Image -->
+                                <div class="mb-6 h-32 flex items-center justify-center">
+                                    <div
+                                        class="size-32 bg-slate-50 rounded-full flex items-center justify-center overflow-hidden">
+                                        <img src="Metabolic%20Panel.png" alt="Metabolic & Weight Health Panel"
+                                            class="w-24 h-24 object-contain character-float"
+                                            style="animation-delay: 1.5s">
+                                    </div>
+                                </div>
+                                <!-- Description -->
+                                <p
+                                    class="text-gray-600 text-sm leading-relaxed mb-6 min-h-[64px] flex items-center justify-center">
+                                    Glucose, HbA1c, lipids, inflammation, insulin and more.
+                                </p>
+                                <!-- Price -->
+                                <div class="mb-6 mt-4">
+                                    <p class="text-sm text-gray-500 font-medium tracking-wide">From</p>
+                                    <p class="text-3xl font-bold text-gray-900">$49</p>
+                                </div>
+                                <!-- Button -->
+                                <div class="mt-auto w-full">
+                                    <button
+                                        class="w-full bg-orange-500 hover:bg-orange-600 text-white py-4 rounded-2xl font-bold text-lg transition-all shadow-lg shadow-orange-500/20 active:scale-95">
+                                        Book Now
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-16 text-center">
+                        <button
+                            class="px-12 py-4 bg-slate-900 text-white font-display font-bold rounded-full hover:scale-105 transition-transform inline-flex items-center gap-2">
+                            View All Panels <span class="material-symbols-outlined">arrow_outward</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+            <section id="tests" class="px-6 lg:px-12 py-24 bg-slate-900 text-white overflow-hidden relative">
+                <div class="max-w-4xl mx-auto text-center relative z-10">
+                    <h2 class="font-display text-4xl lg:text-6xl font-bold mb-8">Individual Tests</h2>
+                    <p class="text-slate-300 text-xl font-medium mb-12">We offer 500+ individual tests from basic
+                        bloodwork to advanced genetics. No hidden fees, just pure clarity.</p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <input
+                            class="px-8 py-5 rounded-2xl bg-white/10 border-2 border-white/20 text-white placeholder:text-white/40 focus:ring-4 focus:ring-primary/50 flex-grow max-w-md"
+                            placeholder="Search for something specific..." type="text" />
+                        <button
+                            class="px-10 py-5 bg-secondary text-white font-display font-bold rounded-2xl hover:bg-secondary/80 transition-all flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined">search</span> Browse All
+                        </button>
+                    </div>
+                </div>
+                <div class="absolute inset-0 opacity-10 pointer-events-none">
+                    <div class="grid grid-cols-6 gap-4 transform -rotate-12 scale-150">
+                        <span class="material-symbols-outlined text-9xl">bloodtype</span>
+                        <span class="material-symbols-outlined text-9xl">genetics</span>
+                        <span class="material-symbols-outlined text-9xl">magnification_small</span>
+                        <span class="material-symbols-outlined text-9xl">medication</span>
+                        <span class="material-symbols-outlined text-9xl">vaccines</span>
+                        <span class="material-symbols-outlined text-9xl">experiment</span>
+                    </div>
+                </div>
+            </section>
+            <section class="px-6 lg:px-12 py-32 bg-white health-journey-path overflow-hidden relative">
+                <div class="max-w-6xl mx-auto">
+                    <h2
+                        class="font-display text-4xl lg:text-6xl font-bold text-slate-900 text-center mb-32 tracking-tight">
+                        How It Works</h2>
+                    <div class="relative">
+                        <!-- Large SVG Path -->
+                        <svg class="absolute hidden lg:block w-full h-[400px] top-1/2 -translate-y-1/2 left-0 z-0"
+                            fill="none" viewBox="0 0 1200 400" xmlns="http://www.w3.org/2000/svg">
+                            <path class="journey-dot"
+                                d="M 150 150 C 250 150, 350 250, 450 250 S 650 150, 750 150 S 950 250, 1050 250"
+                                stroke-width="14"></path>
+
+
+                        </svg>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-4 gap-16 lg:gap-8 relative z-10">
+                            <!-- Step 1 -->
+                            <div class="stagger-step flex flex-col items-center text-center group">
+                                <div
+                                    class="size-36 bg-white rounded-full flex items-center justify-center shadow-[0_20px_50px_rgba(255,158,0,0.2)] mb-10 relative transition-all duration-500 group-hover:scale-110 group-hover:-translate-y-2">
+                                    <div
+                                        class="size-28 bg-vibrant-orange rounded-full flex items-center justify-center text-white shadow-inner">
+                                        <span class="material-symbols-outlined text-5xl">touch_app</span>
+                                    </div>
+                                </div>
+                                <h4 class="font-display font-bold text-2xl mb-3 text-slate-900">
+                                    <span class="mr-2">1.</span>Choose your tests.
+                                </h4>
+                                <p class="text-slate-500 font-medium leading-relaxed px-6">Select panels or individual
+                                    tests with upfront prices.</p>
+                            </div>
+
+                            <!-- Step 2 -->
+                            <div class="stagger-step flex flex-col items-center text-center group">
+                                <div
+                                    class="size-36 bg-white rounded-full flex items-center justify-center shadow-[0_20px_50px_rgba(46,196,182,0.2)] mb-10 relative transition-all duration-500 group-hover:scale-110 group-hover:-translate-y-2">
+                                    <div
+                                        class="size-28 bg-secondary rounded-full flex items-center justify-center text-white shadow-inner">
+                                        <span class="material-symbols-outlined text-5xl">schedule</span>
+                                    </div>
+                                </div>
+                                <h4 class="font-display font-bold text-2xl mb-3 text-slate-900">
+                                    <span class="mr-2">2.</span>Book your visit.
+                                </h4>
+                                <p class="text-slate-500 font-medium leading-relaxed px-6">Pick our New Port Richey lab
+                                    or request mobile phlebotomy for home or facilities.</p>
+                            </div>
+
+                            <!-- Step 3 -->
+                            <div class="stagger-step flex flex-col items-center text-center group">
+                                <div
+                                    class="size-36 bg-white rounded-full flex items-center justify-center shadow-[0_20px_50px_rgba(255,126,95,0.2)] mb-10 relative transition-all duration-500 group-hover:scale-110 group-hover:-translate-y-2">
+                                    <div
+                                        class="size-28 bg-primary rounded-full flex items-center justify-center text-white shadow-inner">
+                                        <span class="material-symbols-outlined text-5xl">edit</span>
+                                    </div>
+                                </div>
+                                <h4 class="font-display font-bold text-2xl mb-3 text-slate-900">
+                                    <span class="mr-2">3.</span>Pay online.
+                                </h4>
+                                <p class="text-slate-500 font-medium leading-relaxed px-6">Secure and fast checkout.</p>
+                            </div>
+
+                            <!-- Step 4 -->
+                            <div class="stagger-step flex flex-col items-center text-center group">
+                                <div
+                                    class="size-36 bg-white rounded-full flex items-center justify-center shadow-[0_20px_50px_rgba(112,224,0,0.2)] mb-10 relative transition-all duration-500 group-hover:scale-110 group-hover:-translate-y-2">
+                                    <div
+                                        class="size-28 bg-vibrant-green rounded-full flex items-center justify-center text-white shadow-inner">
+                                        <span class="material-symbols-outlined text-5xl">check_circle</span>
+                                    </div>
+                                </div>
+                                <h4 class="font-display font-bold text-2xl mb-3 text-slate-900">
+                                    <span class="mr-2">4.</span>Get your results.
+                                </h4>
+                                <p class="text-slate-500 font-medium leading-relaxed px-6">Most results available within
+                                    24–48 hours.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-32 text-center relative z-10">
+                        <button
+                            class="px-12 py-5 bg-slate-900 text-white font-display font-bold text-xl rounded-2xl hover:bg-primary transition-all shadow-xl shadow-slate-200">
+                            Learn More
+                        </button>
+                    </div>
+                </div>
+            </section>
+            <section class="px-6 lg:px-12 py-24 bg-slate-50">
+                <div
+                    class="max-w-7xl mx-auto bg-white rounded-[4rem] overflow-hidden shadow-2xl flex flex-col lg:flex-row">
+                    <div class="flex-1 p-12 lg:p-20 space-y-8">
+
+                        <h2 class="font-display text-4xl lg:text-5xl font-bold text-slate-900 leading-tight">Mobile
+                            Phlebotomy Services</h2>
+                        <p class="text-slate-600 text-lg leading-relaxed font-medium">We bring the lab to you. We offer
+                            mobile blood and urine collection for:</p>
+                        <ul class="space-y-4">
+                            <li class="flex items-center gap-4 text-slate-700 font-bold">
+                                <span class="material-symbols-outlined text-vibrant-green">check_circle</span> Seniors
+                                at home.
+                            </li>
+                            <li class="flex items-center gap-4 text-slate-700 font-bold">
+                                <span class="material-symbols-outlined text-vibrant-green">check_circle</span> Assisted
+                                Living, Memory Care, SNFs, and rehabs.
+                            </li>
+                            <li class="flex items-center gap-4 text-slate-700 font-bold">
+                                <span class="material-symbols-outlined text-vibrant-green">check_circle</span> Primary
+                                care offices and specialists.
+                            </li>
+                            <li class="flex items-center gap-4 text-slate-700 font-bold">
+                                <span class="material-symbols-outlined text-vibrant-green">check_circle</span> Community
+                                centers, churches, and organizations.
+                            </li>
+                        </ul>
+                        <p class="text-slate-500 font-bold mt-6">Flexible scheduling. Professional staff. Fast
+                            turnaround.</p>
+                        <button
+                            class="px-12 py-5 bg-slate-900 hover:bg-slate-800 text-white font-display font-bold rounded-2xl shadow-xl shadow-slate-900/10 transition-all hover:-translate-y-1">
+                            Request Mobile Services
+                        </button>
+                    </div>
+                    <div class="flex-1 relative min-h-[400px]">
+                        <img alt="Mobile lab collection" class="absolute inset-0 w-full h-full object-cover"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWYjRen-M4GZUPHju8s4_hVLNiU3th6J8fK7XSVAeFAqWlWQiY5sD9XebmiuqnGoheLd1pvXRreoKodTg1gIPr8XmZh5nLJASjSaAE1gRxslUY2Zhz_o7mTaAfLlsqSxzQA0uIYfWgJ1ZX93jhKUzvAYUl-BMRk8WUVR0x2YqAs9gs_VT5ZvjV9nvuzRWkW0yp2tP4WmxajTXUsmmh-yHOSvO6Gf8zD2AzdEIjgloYKGhCaO5JSfV6cZPvmFmb3di4tzG_pHAzEvo" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
+                    </div>
+                </div>
+            </section>
+            <section class="px-6 lg:px-12 py-24 bg-white">
+                <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <div id="physicians"
+                        class="p-12 rounded-[4rem] bg-gradient-to-br from-slate-50 to-slate-100 border-4 border-white shadow-xl relative overflow-hidden group">
+                        <div
+                            class="size-20 bg-white rounded-3xl flex items-center justify-center text-primary shadow-lg mb-8 group-hover:rotate-12 transition-transform">
+                            <span class="material-symbols-outlined text-5xl">stethoscope</span>
+                        </div>
+                        <h3 class="font-display text-3xl font-bold text-slate-900 mb-4">For Community Physicians</h3>
+                        <p class="text-slate-600 text-lg mb-4 font-medium">Partner with MusB Diagnostics for reliable,
+                            local testing.</p>
+                        <p class="text-gray-600 uppercase font-semibold tracking-wide mb-4">WE PROVIDE:</p>
+                        <ul class="space-y-3 mb-10">
+                            <li class="flex items-center gap-3 text-slate-600 font-semibold"><span
+                                    class="size-2 rounded-full bg-primary"></span> Same-day home or office draws.</li>
+                            <li class="flex items-center gap-3 text-slate-600 font-semibold"><span
+                                    class="size-2 rounded-full bg-primary"></span> Fast results for CBC, CMP, thyroid,
+                                vitamins, hormones, lipids, A1c, and more.</li>
+                            <li class="flex items-center gap-3 text-slate-600 font-semibold"><span
+                                    class="size-2 rounded-full bg-primary"></span> Drop-off and pickup services.</li>
+                            <li class="flex items-center gap-3 text-slate-600 font-semibold"><span
+                                    class="size-2 rounded-full bg-primary"></span> Referral programs for ongoing
+                                clinical trials.</li>
+                            <li class="flex items-center gap-3 text-slate-600 font-semibold"><span
+                                    class="size-2 rounded-full bg-primary"></span> Dedicated support for your staff.
+                            </li>
+                        </ul>
+                        <button
+                            class="w-full py-5 bg-slate-900 hover:bg-slate-800 text-white font-display font-bold rounded-2xl transition-all">Physician
+                            Services</button>
+                    </div>
+                    <div id="facilities"
+                        class="p-12 rounded-[4rem] bg-gradient-to-br from-secondary/5 to-secondary/10 border-4 border-white shadow-xl relative overflow-hidden group">
+                        <div
+                            class="size-20 bg-white rounded-3xl flex items-center justify-center text-secondary shadow-lg mb-8 group-hover:rotate-12 transition-transform">
+                            <span class="material-symbols-outlined text-5xl">apartment</span>
+                        </div>
+                        <h3 class="font-display text-3xl font-bold text-slate-900 mb-4">For Facilities (ALFs, SNFs,
+                            REHABS)</h3>
+                        <p class="text-slate-600 text-lg mb-4 font-medium">Support your residents with on-site weekly
+                            blood and urine collection.</p>
+                        <p class="text-gray-600 uppercase font-semibold tracking-wide mb-4">MUSB OFFERS:</p>
+                        <ul class="space-y-3 mb-10">
+                            <li class="flex items-center gap-3 text-slate-600 font-semibold"><span
+                                    class="size-2 rounded-full bg-secondary"></span> Scheduled weekly routes.</li>
+                            <li class="flex items-center gap-3 text-slate-600 font-semibold"><span
+                                    class="size-2 rounded-full bg-secondary"></span> Standing orders and routine panels.
+                            </li>
+                            <li class="flex items-center gap-3 text-slate-600 font-semibold"><span
+                                    class="size-2 rounded-full bg-secondary"></span> Special senior pricing.</li>
+                            <li class="flex items-center gap-3 text-slate-600 font-semibold"><span
+                                    class="size-2 rounded-full bg-secondary"></span> Rapid communication with facility
+                                nurses.</li>
+                        </ul>
+                        <button
+                            class="w-full py-5 bg-slate-900 hover:bg-slate-800 text-white font-display font-bold rounded-2xl transition-all">Facility
+                            Services</button>
+                    </div>
+                </div>
+            </section>
+            <section class="px-6 lg:px-12 py-32 bg-slate-900 rounded-[5rem] mx-4 my-24 relative overflow-hidden">
+                <div class="max-w-7xl mx-auto relative z-10">
+                    <div class="text-center mb-20">
+                        <h2 class="font-display text-5xl font-bold text-white mb-6">Why MusB Diagnostics?</h2>
+                        <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 max-w-5xl mx-auto text-left mt-12">
+                            <li class="flex items-start gap-4">
+                                <span
+                                    class="flex items-center justify-center w-8 h-8 rounded-full bg-teal-500/10 text-teal-400 shrink-0">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                </span>
+                                <span class="text-slate-300 text-lg font-medium leading-tight">CLIA-certified,
+                                    COLA-accredited lab.</span>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <span
+                                    class="flex items-center justify-center w-8 h-8 rounded-full bg-teal-500/10 text-teal-400 shrink-0">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                </span>
+                                <span class="text-slate-300 text-lg font-medium leading-tight">Local team with strong
+                                    community service.</span>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <span
+                                    class="flex items-center justify-center w-8 h-8 rounded-full bg-teal-500/10 text-teal-400 shrink-0">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                </span>
+                                <span class="text-slate-300 text-lg font-medium leading-tight">Senior-friendly
+                                    services.</span>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <span
+                                    class="flex items-center justify-center w-8 h-8 rounded-full bg-teal-500/10 text-teal-400 shrink-0">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                </span>
+                                <span class="text-slate-300 text-lg font-medium leading-tight">Affordable, transparent
+                                    pricing for self-pay patients.</span>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <span
+                                    class="flex items-center justify-center w-8 h-8 rounded-full bg-teal-500/10 text-teal-400 shrink-0">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                </span>
+                                <span class="text-slate-300 text-lg font-medium leading-tight">Trusted by physicians,
+                                    facilities, and families.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mt-20 text-center">
+                        <button
+                            class="px-12 py-5 bg-white text-slate-900 font-display font-bold rounded-2xl hover:scale-105 transition-transform">
+                            About Us
+                        </button>
+                    </div>
+                </div>
+            </section>
+            <section class="px-6 lg:px-12 py-24 bg-white">
+                <div class="max-w-7xl mx-auto">
+                    <div class="flex flex-col md:flex-row justify-between items-center mb-16 gap-6">
+                        <div>
+                            <h2 class="font-display text-4xl lg:text-5xl font-bold text-slate-900">Current Specials</h2>
+                            <p class="text-slate-500 mt-2 text-lg">Limited-time offers designed to provide affordable,
+                                high-quality diagnostic testing.</p>
+                        </div>
+                        <button
+                            class="text-primary font-display font-bold text-lg hover:underline decoration-4 underline-offset-8">See
+                            All Offers</button>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+                        <!-- Card 1 -->
+                        <div
+                            class="bg-gradient-to-br from-primary to-highlight p-10 rounded-[3rem] text-white shadow-2xl relative overflow-hidden group flex flex-col h-full">
+                            <span
+                                class="inline-block px-4 py-1 rounded-full bg-white/20 font-bold text-xs uppercase mb-6">Limited-time
+                                offer</span>
+                            <h3 class="font-display text-3xl font-bold mb-4 line-clamp-2">Holiday Wellness Special</h3>
+                            <div class="text-5xl font-bold mb-4">$49</div>
+                            <p class="text-white/80 mb-8 font-medium">Includes 42-test wellness panel + free urinalysis.
+                            </p>
+                            <div class="mt-auto">
+                                <button
+                                    class="w-full py-4 bg-white text-primary font-display font-bold rounded-2xl group-hover:scale-105 transition-transform">Claim
+                                    Offer</button>
+                            </div>
+                            <span
+                                class="material-symbols-outlined absolute -bottom-10 -right-10 text-[12rem] opacity-10 rotate-12">featured_seasonal_and_gifts</span>
+                        </div>
+                        <!-- Card 2 -->
+                        <div
+                            class="bg-gradient-to-br from-vibrant-orange to-red-400 p-10 rounded-[3rem] text-white shadow-2xl relative overflow-hidden group flex flex-col h-full">
+                            <span
+                                class="inline-block px-4 py-1 rounded-full bg-white/20 font-bold text-xs uppercase mb-6">Ask
+                                our team</span>
+                            <h3 class="font-display text-3xl font-bold mb-4 line-clamp-2">Senior Wellness Discount</h3>
+                            <p class="text-white/80 mb-8 font-medium">Special pricing for adults 60+.</p>
+                            <div class="mt-auto">
+                                <button
+                                    class="w-full py-4 bg-white text-vibrant-orange font-display font-bold rounded-2xl group-hover:scale-105 transition-transform">Learn
+                                    More</button>
+                            </div>
+                            <span
+                                class="material-symbols-outlined absolute -bottom-10 -right-10 text-[12rem] opacity-10 rotate-12">family_history</span>
+                        </div>
+                        <!-- Card 3 -->
+                        <div
+                            class="bg-gradient-to-br from-secondary to-vibrant-blue p-10 rounded-[3rem] text-white shadow-2xl relative overflow-hidden group flex flex-col h-full">
+                            <span
+                                class="inline-block px-4 py-1 rounded-full bg-white/20 font-bold text-xs uppercase mb-6">Group
+                                Valid</span>
+                            <h3 class="font-display text-3xl font-bold mb-4 line-clamp-2">Free Home Pickup for Groups of
+                                5+</h3>
+                            <p class="text-white/80 mb-8 font-medium">Offer valid for home and community groups.</p>
+                            <div class="mt-auto">
+                                <button
+                                    class="w-full py-4 bg-white text-secondary font-display font-bold rounded-2xl group-hover:scale-105 transition-transform">Schedule
+                                    Group</button>
+                            </div>
+                            <span
+                                class="material-symbols-outlined absolute -bottom-10 -right-10 text-[12rem] opacity-10 rotate-12">groups</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="contact" class="py-24 bg-slate-100">
+                <div class="max-w-6xl mx-auto px-6">
+                    <div class="bg-white rounded-[3rem] shadow-2xl overflow-hidden flex flex-col lg:flex-row">
+                        <!-- LEFT PANEL -->
+                        <div class="bg-[#0f1f3d] text-white p-12 lg:w-1/2 flex flex-col justify-between">
+                            <div>
+                                <h2 class="font-display text-4xl font-bold mb-6">Contact & Support</h2>
+                                <p class="text-slate-400 text-lg mb-12">
+                                    Need help choosing tests or booking? Our team is one call away.
+                                </p>
+
+                                <!-- Phone -->
+                                <div class="flex items-center gap-6 mb-10">
+                                    <div
+                                        class="bg-white/10 p-4 rounded-2xl flex items-center justify-center text-white/60">
+                                        <span class="material-symbols-outlined text-3xl">call</span>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs text-slate-500 font-bold uppercase tracking-widest">Phone</p>
+                                        <p class="font-display font-bold text-xl text-white">(813) 419-0781</p>
+                                    </div>
+                                </div>
+
+                                <!-- Email -->
+                                <div class="flex items-center gap-6 mb-10">
+                                    <div
+                                        class="bg-white/10 p-4 rounded-2xl flex items-center justify-center text-white/60">
+                                        <span class="material-symbols-outlined text-3xl">mail</span>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs text-slate-500 font-bold uppercase tracking-widest">Email</p>
+                                        <p class="font-display font-bold text-xl text-white">info@musbdiagnostics.com
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Address -->
+                                <div class="flex items-center gap-6">
+                                    <div
+                                        class="bg-white/10 p-4 rounded-2xl flex items-center justify-center text-white/60">
+                                        <span class="material-symbols-outlined text-3xl">location_on</span>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs text-slate-500 font-bold uppercase tracking-widest">Address
+                                        </p>
+                                        <p class="font-display font-bold text-xl text-white">New Port Richey, FL, USA
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- RIGHT PANEL -->
+                        <div class="p-12 lg:w-1/2 bg-gray-50 flex flex-col justify-center">
+                            <h3 class="font-display text-3xl font-bold text-slate-900 mb-8">
+                                Send a Quick Message
+                            </h3>
+                            <form class="space-y-6">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <input type="text" placeholder="Full Name"
+                                        class="w-full p-5 rounded-2xl bg-white border border-slate-200 focus:ring-4 focus:ring-slate-900/5 focus:border-slate-900 outline-none font-medium transition-all placeholder:text-slate-400">
+                                    <input type="email" placeholder="Email Address"
+                                        class="w-full p-5 rounded-2xl bg-white border border-slate-200 focus:ring-4 focus:ring-slate-900/5 focus:border-slate-900 outline-none font-medium transition-all placeholder:text-slate-400">
+                                </div>
+                                <input type="tel" placeholder="Phone Number"
+                                    class="w-full p-5 rounded-2xl bg-white border border-slate-200 focus:ring-4 focus:ring-slate-900/5 focus:border-slate-900 outline-none font-medium transition-all placeholder:text-slate-400">
+                                <textarea rows="5" placeholder="How can we help?"
+                                    class="w-full p-5 rounded-2xl bg-white border border-slate-200 focus:ring-4 focus:ring-slate-900/5 focus:border-slate-900 outline-none font-medium transition-all placeholder:text-slate-400"></textarea>
+                                <button
+                                    class="w-full bg-[#0f1f3d] hover:bg-[#162a52] text-white py-5 rounded-2xl font-display font-bold text-xl shadow-xl shadow-slate-900/20 transition-all active:scale-[0.98] flex items-center justify-center gap-3">
+                                    <span>Send Message</span>
+                                    <span class="material-symbols-outlined">send</span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer class="px-6 lg:px-12 py-16 bg-white">
+            <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
+                <div class="flex items-center gap-4">
+                    <div class="size-12 rounded-2xl overflow-hidden shadow-lg">
+                        <img src="logo.jpg" alt="MusB Diagnostics Logo" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <h2 class="text-slate-900 font-display font-bold text-2xl">MusB Diagnostics</h2>
+                        <p class="text-slate-400 text-sm">Empowering Your Health Journey.</p>
+                    </div>
+                </div>
+                <div class="flex gap-12 text-slate-500 font-bold">
+                    <a class="hover:text-primary transition-colors" href="#">Privacy</a>
+                    <a class="hover:text-primary transition-colors" href="#">Terms</a>
+                    <a class="hover:text-primary transition-colors" href="#">CLIA Info</a>
+                </div>
+                <div class="flex items-center gap-4">
+                    <a class="size-12 rounded-2xl bg-slate-50 flex items-center justify-center text-slate-400 hover:bg-primary hover:text-white transition-all"
+                        href="#">
+                        <span class="material-symbols-outlined">share</span>
+                    </a>
+                    <a class="size-12 rounded-2xl bg-slate-50 flex items-center justify-center text-slate-400 hover:bg-secondary hover:text-white transition-all"
+                        href="#">
+                        <span class="material-symbols-outlined">forum</span>
+                    </a>
+                </div>
+            </div>
+            <div
+                class="max-w-7xl mx-auto mt-12 pt-12 border-t-2 border-slate-50 text-center text-slate-400 text-sm font-medium">
+                © 2024 MusB Diagnostics. Locally owned and CLIA Certified Lab. Proudly serving the community.
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        const sections = document.querySelectorAll("section[id]");
+        const navLinks = document.querySelectorAll(".nav-link");
+
+        window.addEventListener("scroll", () => {
+            let current = "";
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                if (window.scrollY >= sectionTop) {
+                    current = section.getAttribute("id");
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove("active");
+                if (link.getAttribute("href") === "#" + current) {
+                    link.classList.add("active");
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

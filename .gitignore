@@ -1,0 +1,8 @@
+# System files
+.DS_Store
+Thumbs.db
+
+# Project-specific ignored files
+medical_hero_bg.png
+screen.png
+test_sync.html
