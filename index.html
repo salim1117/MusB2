@@ -95,6 +95,10 @@
             .hero-btn {
                 @apply inline-block mt-[30px] px-[30px] py-[14px] bg-[#f97316] text-white no-underline rounded-lg font-semibold transition-all hover:bg-[#ea580c] hover:-translate-y-1;
             }
+
+            .hero-btn-secondary {
+                @apply inline-block mt-4 sm:mt-[30px] sm:ml-4 px-[30px] py-[14px] bg-white/10 text-white no-underline rounded-lg font-semibold border-2 border-white/30 transition-all hover:bg-white/20 hover:border-white/50 hover:-translate-y-1;
+            }
         }
         html {
             scroll-behavior: smooth;
@@ -169,7 +173,10 @@
                             </div>
                         </div>
 
-                        <a href="#" class="hero-btn font-display text-xl">Book Tests</a>
+                        <div class="flex flex-wrap gap-4">
+                            <a href="#" class="hero-btn font-display text-xl">Book Tests</a>
+                            <a href="#panels" class="hero-btn-secondary font-display text-xl">View Wellness Panels</a>
+                        </div>
                     </div>
                 </div>
             </section>
