@@ -10,6 +10,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
         rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script id="tailwind-config">
         tailwind.config = {
@@ -114,6 +115,99 @@
 
         body {
             padding-top: 80px;
+        }
+
+        /* New Footer Styles */
+        .main-footer {
+            background: #0B1F3B; /* navy */
+            color: #ffffff;
+            padding: 70px 8% 30px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        @media (min-width: 768px) {
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .footer-container {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .footer-col h3, .footer-col h4 {
+            margin-bottom: 20px;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .footer-logo {
+            color: #ffffff;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .footer-tagline {
+            opacity: 0.8;
+            margin-top: 10px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            opacity: 0.75;
+            transition: 0.3s;
+        }
+
+        .footer-col ul li a:hover {
+            color: #F97316; /* orange */
+            opacity: 1;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            padding-top: 30px;
+        }
+
+        .social-icons {
+            margin-bottom: 15px;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            margin: 0 6px;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            color: #ffffff;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            background: #F97316;
+            border-color: #F97316;
         }
     </style>
 </head>
@@ -812,36 +906,53 @@
                 </div>
             </section>
         </main>
-        <footer class="px-6 lg:px-12 py-16 bg-white">
-            <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
-                <div class="flex items-center gap-4">
-                    <div class="size-12 rounded-2xl overflow-hidden shadow-lg">
-                        <img src="logo.jpg" alt="MusB Diagnostics Logo" class="w-full h-full object-cover">
-                    </div>
-                    <div>
-                        <h2 class="text-slate-900 font-display font-bold text-2xl">MusB Diagnostics</h2>
-                        <p class="text-slate-400 text-sm">Empowering Your Health Journey.</p>
-                    </div>
+        <footer class="main-footer">
+            <div class="footer-container">
+                <!-- Column 1 -->
+                <div class="footer-col">
+                    <h3 class="footer-logo">MusB Diagnostics</h3>
+                    <p class="footer-tagline">Fast. Affordable. Local.</p>
                 </div>
-                <div class="flex gap-12 text-slate-500 font-bold">
-                    <a class="hover:text-primary transition-colors" href="#">Privacy</a>
-                    <a class="hover:text-primary transition-colors" href="#">Terms</a>
-                    <a class="hover:text-primary transition-colors" href="#">CLIA Info</a>
+                <!-- Column 2 -->
+                <div class="footer-col">
+                    <h4>Wellness Panels</h4>
+                    <ul>
+                        <li><a href="#panels">Essential Panel</a></li>
+                        <li><a href="#panels">Women’s Health</a></li>
+                        <li><a href="#panels">Men’s Health</a></li>
+                        <li><a href="#panels">Metabolic Panel</a></li>
+                    </ul>
                 </div>
-                <div class="flex items-center gap-4">
-                    <a class="size-12 rounded-2xl bg-slate-50 flex items-center justify-center text-slate-400 hover:bg-primary hover:text-white transition-all"
-                        href="#">
-                        <span class="material-symbols-outlined">share</span>
-                    </a>
-                    <a class="size-12 rounded-2xl bg-slate-50 flex items-center justify-center text-slate-400 hover:bg-secondary hover:text-white transition-all"
-                        href="#">
-                        <span class="material-symbols-outlined">forum</span>
-                    </a>
+                <!-- Column 3 -->
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#home">Mobile Phlebotomy</a></li>
+                        <li><a href="#home">Walk-In Testing</a></li>
+                        <li><a href="#home">Community Services</a></li>
+                        <li><a href="#physicians">For Physicians</a></li>
+                    </ul>
+                </div>
+                <!-- Column 4 -->
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#contact">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms</a></li>
+                    </ul>
                 </div>
             </div>
-            <div
-                class="max-w-7xl mx-auto mt-12 pt-12 border-t-2 border-slate-50 text-center text-slate-400 text-sm font-medium">
-                © 2024 MusB Diagnostics. Locally owned and CLIA Certified Lab. Proudly serving the community.
+            <!-- Bottom Section -->
+            <div class="footer-bottom">
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+                <p>© 2024 MusB Diagnostics. All rights reserved.</p>
             </div>
         </footer>
     </div>
