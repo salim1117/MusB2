@@ -114,7 +114,11 @@
         }
 
         body {
-            padding-top: 80px;
+            padding-top: 76px;
+        }
+
+        .mobile-nav-link.active {
+            color: #2ec4b6 !important;
         }
 
         /* New Footer Styles */
@@ -215,28 +219,62 @@
 <body class="bg-background-light font-body text-slate-800 selection:bg-primary selection:text-white">
     <div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
         <header
-            class="fixed top-0 w-full bg-white/95 backdrop-blur-xl z-50 shadow-sm border-b-4 border-primary/10 flex items-center justify-between px-6 lg:px-12 py-6">
-            <div class="flex items-center gap-10">
-                <div class="flex items-center gap-3">
-                    <div class="size-10 rounded-xl overflow-hidden shadow-lg">
+            class="fixed top-0 w-full bg-white/95 backdrop-blur-xl z-[100] shadow-sm border-b-4 border-primary/10 transition-all duration-300">
+            <div class="max-w-7xl mx-auto flex items-center justify-between px-6 lg:px-12 py-4">
+                <a href="#home" class="flex items-center gap-3 group">
+                    <div
+                        class="size-10 rounded-xl overflow-hidden shadow-lg transition-transform group-hover:scale-105">
                         <img src="logo.jpg" alt="MusB Diagnostics Logo" class="w-full h-full object-cover">
                     </div>
-                    <h2 class="text-black font-display font-bold text-2xl tracking-tight">MusB Diagnostics</h2>
-                </div>
-                <nav class="hidden md:flex items-center gap-8 font-medium">
-                    <a href="#home" class="nav-link text-slate-700 font-bold">Home</a>
-                    <a href="#panels" class="nav-link text-slate-700 font-bold">Wellness Panels</a>
-                    <a href="#tests" class="nav-link text-slate-700 font-bold">Tests</a>
-                    <a href="#physicians" class="nav-link text-slate-700 font-bold">Physicians</a>
-                    <a href="#facilities" class="nav-link text-slate-700 font-bold">Facilities</a>
-                    <a href="#contact" class="nav-link text-slate-700 font-bold">Contact</a>
-                </nav>
-            </div>
-            <div class="flex items-center gap-4">
-                <a href="#"
-                    class="hidden sm:flex px-8 py-3 bg-[#2ec4b6] hover:bg-[#20b2aa] text-white font-display font-bold rounded-full shadow-xl shadow-[#2ec4b6]/20 transition-all hover:-translate-y-1 flex items-center justify-center leading-none">
-                    Book Now
+                    <h2 class="text-black font-display font-bold text-xl lg:text-2xl tracking-tight whitespace-nowrap">
+                        MusB Diagnostics</h2>
                 </a>
+
+                <nav class="hidden md:flex items-center gap-6 lg:gap-8 font-medium">
+                    <a href="#home" class="nav-link text-slate-700 hover:text-primary font-bold">Home</a>
+                    <a href="#panels" class="nav-link text-slate-700 hover:text-primary font-bold">Wellness Panels</a>
+                    <a href="#tests" class="nav-link text-slate-700 hover:text-primary font-bold">Tests</a>
+                    <a href="#physicians" class="nav-link text-slate-700 hover:text-primary font-bold">Physicians</a>
+                    <a href="#facilities" class="nav-link text-slate-700 hover:text-primary font-bold">Facilities</a>
+                    <a href="#contact" class="nav-link text-slate-700 hover:text-primary font-bold">Contact</a>
+                </nav>
+
+                <button id="mobile-menu-btn"
+                    class="md:hidden p-2 text-slate-700 hover:bg-slate-100 rounded-xl transition-colors"
+                    aria-label="Open Menu">
+                    <span class="material-symbols-outlined text-3xl block">menu</span>
+                </button>
+            </div>
+
+            <!-- Mobile Menu Overlay -->
+            <div id="mobile-menu"
+                class="fixed inset-0 bg-white z-[110] flex flex-col items-center justify-center translate-x-full transition-transform duration-500 ease-in-out md:hidden">
+                <button id="close-menu-btn"
+                    class="absolute top-6 right-6 p-2 text-slate-700 hover:bg-slate-100 rounded-xl transition-colors"
+                    aria-label="Close Menu">
+                    <span class="material-symbols-outlined text-4xl">close</span>
+                </button>
+
+                <div class="flex flex-col items-center gap-8 w-full px-6">
+                    <div class="size-20 rounded-2xl overflow-hidden shadow-2xl mb-4">
+                        <img src="logo.jpg" alt="Logo" class="w-full h-full object-cover">
+                    </div>
+                    <nav class="flex flex-col items-center gap-6 w-full">
+                        <a href="#home"
+                            class="mobile-nav-link text-2xl font-display font-bold text-slate-900 transition-colors w-full text-center py-2">Home</a>
+                        <a href="#panels"
+                            class="mobile-nav-link text-2xl font-display font-bold text-slate-900 transition-colors w-full text-center py-2">Wellness
+                            Panels</a>
+                        <a href="#tests"
+                            class="mobile-nav-link text-2xl font-display font-bold text-slate-900 transition-colors w-full text-center py-2">Tests</a>
+                        <a href="#physicians"
+                            class="mobile-nav-link text-2xl font-display font-bold text-slate-900 transition-colors w-full text-center py-2">Physicians</a>
+                        <a href="#facilities"
+                            class="mobile-nav-link text-2xl font-display font-bold text-slate-900 transition-colors w-full text-center py-2">Facilities</a>
+                        <a href="#contact"
+                            class="mobile-nav-link text-2xl font-display font-bold text-slate-900 transition-colors w-full text-center py-2">Contact</a>
+                    </nav>
+                </div>
             </div>
         </header>
         <main class="flex flex-col">
@@ -956,7 +994,33 @@
     <script>
         const sections = document.querySelectorAll("section[id]");
         const navLinks = document.querySelectorAll(".nav-link");
+        const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
+        const mobileMenu = document.getElementById("mobile-menu");
+        const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+        const closeMenuBtn = document.getElementById("close-menu-btn");
 
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            mobileMenu.classList.toggle("translate-x-full");
+            if (!mobileMenu.classList.contains("translate-x-full")) {
+                document.body.style.overflow = "hidden";
+            } else {
+                document.body.style.overflow = "";
+            }
+        }
+
+        mobileMenuBtn.addEventListener("click", toggleMenu);
+        closeMenuBtn.addEventListener("click", toggleMenu);
+
+        // Close menu when clicking a link
+        mobileNavLinks.forEach(link => {
+            link.addEventListener("click", () => {
+                mobileMenu.classList.add("translate-x-full");
+                document.body.style.overflow = "";
+            });
+        });
+
+        // Scroll Spy
         window.addEventListener("scroll", () => {
             let current = "";
 
@@ -967,12 +1031,17 @@
                 }
             });
 
-            navLinks.forEach(link => {
-                link.classList.remove("active");
-                if (link.getAttribute("href") === "#" + current) {
-                    link.classList.add("active");
-                }
-            });
+            const updateLinks = (links) => {
+                links.forEach(link => {
+                    link.classList.remove("active");
+                    if (link.getAttribute("href") === "#" + current) {
+                        link.classList.add("active");
+                    }
+                });
+            };
+
+            updateLinks(navLinks);
+            updateLinks(mobileNavLinks);
         });
     </script>
 </body>
